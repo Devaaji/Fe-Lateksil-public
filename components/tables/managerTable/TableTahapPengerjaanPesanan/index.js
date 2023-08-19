@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import DetailTeknisiProgress from '../../../modals/managerModal/detailTeknisiProgress';
 import DetailTahapPengerjaan from '../../../modals/managerModal/detailTahapPengerjaan';
-import UploadResultPengujianModal from '../../../modals/managerModal/uploadResultPengujianModal';
+// import UploadResultPengujianModal from '../../../modals/managerModal/uploadResultPengujianModal';
 
 const TableTahapPengerjaanPesanan = ({ pengujian }) => {
   const {
@@ -25,21 +25,11 @@ const TableTahapPengerjaanPesanan = ({ pengujian }) => {
     onClose: onCloseTeknisiProgress,
   } = useDisclosure();
 
-  const {
-    isOpen: isOpengUploadResult,
-    onOpen: onOpenUploadResult,
-    onClose: onCloseUploadResult,
-  } = useDisclosure();
-
-  // const isDone = dataTeknisi?.data.every(
-  //   (status) => status.status_pengerjaan === PengerjaanTypes.COMPLETED
-  // );
-
-  // if (isDone) {
-  //   console.log('done');
-  // } else {
-  //   console.log('progress');
-  // }
+  // const {
+  //   isOpen: isOpengUploadResult,
+  //   onOpen: onOpenUploadResult,
+  //   onClose: onCloseUploadResult,
+  // } = useDisclosure();
 
   return (
     <>
@@ -70,7 +60,7 @@ const TableTahapPengerjaanPesanan = ({ pengujian }) => {
           <Button
             variant="lateksil-solid"
             isDisabled={pengujian.file_result_pengujian === null ? false : true}
-            onClick={onOpenUploadResult}
+            // onClick={onOpenUploadResult}
           >
             {pengujian.file_result_pengujian === null ? 'Upload' : 'Terkirim'}
           </Button>
@@ -86,11 +76,11 @@ const TableTahapPengerjaanPesanan = ({ pengujian }) => {
         isOpen={isOpenTeknisiProgress}
         onClose={onCloseTeknisiProgress}
       />
-      <UploadResultPengujianModal
+      {/* <UploadResultPengujianModal
         id={pengujian.id}
         isOpen={isOpengUploadResult}
         onClose={onCloseUploadResult}
-      />
+      /> */}
     </>
   );
 };
