@@ -15,13 +15,33 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+import useMutationUpdateProfile from '../../../hooks/mutation/put/useMutationUpdateProfile';
 
 const ModalUpdateProfile = ({ data, isOpen, onClose }) => {
-  const { register, setValue, reset } = useForm();
+  const { register, handleSubmit, setValue, reset } = useForm();
+  const id_user = data?.id;
+
+  const {
+    mutateAsync: mutateUpdateProfile,
+    isLoading: isLoadingUpdateProfile,
+  } = useMutationUpdateProfile();
 
   const onModalClose = () => {
     onClose();
     reset();
+  };
+
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+    formData.append('full_name', data.full_name);
+    formData.append('email', data.email);
+    formData.append('no_whatsapp', data.no_whatsapp);
+    formData.append('address', data.address);
+    formData.append('image_profile', data.image_profile[0]);
+
+    mutateUpdateProfile({ id: id_user, formData: formData }).then(() =>
+      onClose()
+    );
   };
 
   useEffect(() => {
@@ -45,7 +65,7 @@ const ModalUpdateProfile = ({ data, isOpen, onClose }) => {
         mx="4"
         overflowY="auto"
         as="form"
-        // onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit)}
         noValidate
       >
         <ModalHeader>
@@ -90,7 +110,12 @@ const ModalUpdateProfile = ({ data, isOpen, onClose }) => {
           </Stack>
         </ModalBody>
         <ModalFooter bg="gray.100">
-          <Button type="submit" w="full" variant="lateksil-solid">
+          <Button
+            type="submit"
+            w="full"
+            variant="lateksil-solid"
+            isLoading={isLoadingUpdateProfile}
+          >
             Simpan
           </Button>
         </ModalFooter>
