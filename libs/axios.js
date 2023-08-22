@@ -2,7 +2,7 @@ import axios from 'axios';
 import { parseCookies } from 'nookies';
 import useAuthUserStore from '../store/useAuthUserStore';
 
-export const baseUrl = 'http://192.168.60.168:3030/';
+export const baseUrl = 'https://lateksil.xyz/';
 
 const axiosInstance = axios.create({
   baseURL: baseUrl,
