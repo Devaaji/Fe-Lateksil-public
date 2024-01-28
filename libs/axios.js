@@ -2,7 +2,7 @@ import axios from 'axios';
 import { parseCookies } from 'nookies';
 import useAuthUserStore from '../store/useAuthUserStore';
 
-export const baseUrl = 'https://lateksil.xyz/';
+export const baseUrl = 'https://api.lpts-ubl.com/';
 
 const axiosInstance = axios.create({
   baseURL: baseUrl,
